@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.PodPlus" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="android:windowDisablePreview">true</item>
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary</item>
+
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/purple</item>
+
+        <!-- Background and text colors for light mode. -->
+        <item name="android:textColorPrimary">@color/white</item>
+    </style>
+</resources>
