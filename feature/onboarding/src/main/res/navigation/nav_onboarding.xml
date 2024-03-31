@@ -17,6 +17,7 @@
             android:id="@+id/action_signUpFragment_to_signUpPageFragment"
             app:destination="@id/signUpPageFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/loginPageFragment"
         android:name="com.example.onboarding.LoginPageFragment"
@@ -26,6 +27,7 @@
             android:id="@+id/action_loginPageFragment_to_signUpPageFragment"
             app:destination="@id/signUpPageFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/signUpPageFragment"
         android:name="com.example.onboarding.SignUpPageFragment"
@@ -34,5 +36,11 @@
         <action
             android:id="@+id/action_signUpPageFragment_to_loginPageFragment"
             app:destination="@id/loginPageFragment" />
+        <action
+            android:id="@+id/action_signUpPageFragment_to_nav_pages"
+            app:destination="@id/nav_pages" />
+
     </fragment>
+
+    <include app:graph="@navigation/nav_pages"/>
 </navigation>

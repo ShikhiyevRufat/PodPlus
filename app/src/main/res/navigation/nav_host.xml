@@ -4,9 +4,10 @@
     android:id="@+id/nav_host"
     app:startDestination="@id/nav_splashscreen">
 
-
+    <include app:graph="@navigation/nav_pages"/>
     <include app:graph="@navigation/nav_onboarding"/>
-
     <include app:graph="@navigation/nav_splashscreen"/>
+
+
 
 </navigation>

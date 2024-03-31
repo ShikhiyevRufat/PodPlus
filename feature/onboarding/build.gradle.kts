@@ -41,6 +41,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":feature:pages"))
 
     implementation(Libs.Hilt.hilt)
     kapt(Libs.Hilt.hilt_compiler)

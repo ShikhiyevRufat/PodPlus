@@ -36,10 +36,15 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures{
+        viewBinding = true
+        dataBinding = true
+    }
 }
 
 dependencies {
     implementation(project(":feature:splashscreen"))
+    implementation(project(":feature:pages"))
 
     implementation(Libs.Hilt.hilt)
     kapt(Libs.Hilt.hilt_compiler)

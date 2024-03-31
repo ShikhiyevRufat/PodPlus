@@ -28,6 +28,11 @@ class SignUpPageFragment : Fragment() {
             findNavController().navigate(action)
         }
 
+        binding.signup.setOnClickListener {
+            val action = SignUpPageFragmentDirections.actionSignUpPageFragmentToNavPages()
+            findNavController().navigate(action)
+        }
+
         return binding.root
     }
 
