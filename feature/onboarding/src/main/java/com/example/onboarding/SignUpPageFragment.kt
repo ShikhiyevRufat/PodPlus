@@ -1,18 +1,25 @@
 package com.example.onboarding
 
 import android.os.Bundle
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.onboarding.databinding.FragmentSignUpPageBinding
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuthException
+import com.google.firebase.auth.auth
+import com.google.firebase.firestore.firestore
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SignUpPageFragment : Fragment() {
 
     private lateinit var binding: FragmentSignUpPageBinding
+    private val firestore = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -28,12 +35,101 @@ class SignUpPageFragment : Fragment() {
             findNavController().navigate(action)
         }
 
+        helperText()
+
         binding.signup.setOnClickListener {
-            val action = SignUpPageFragmentDirections.actionSignUpPageFragmentToNavPages()
-            findNavController().navigate(action)
+            register()
         }
 
         return binding.root
+    }
+
+
+    private fun register(){
+        val email = binding.emailaddressSign.text.toString()
+        val password = binding.passwordSign.text.toString()
+
+        val firebaseAuth = Firebase.auth
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
+            .addOnSuccessListener { authResult ->
+                val user = authResult.user
+                addExtraUserInfo(user!!.uid)
+                openpage()
+            }.addOnFailureListener { exception ->
+                (exception as? FirebaseAuthException)?.errorCode?.let { errorCode ->
+                    Toast.makeText(context,"Account not been successful!",Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
+    fun openpage(){
+        val action = SignUpPageFragmentDirections.actionSignUpPageFragmentToNavPages()
+        findNavController().navigate(action)
+    }
+
+    private fun addExtraUserInfo(userId: String) {
+        val username = binding.username.text.toString()
+        val email = binding.emailaddressSign.text.toString()
+
+        val userDocument = firestore.collection("USERS").document(userId)
+        userDocument.set(
+            mapOf(
+                "username" to username,
+                "email" to email,
+            )
+        )
+    }
+
+    private fun helperText(){
+        binding.emailaddressSign.setOnFocusChangeListener{_,focused->
+            if(!focused){
+                binding.emailaddressSignLayout.helperText = valid_email()
+
+            }
+        }
+
+        binding.passwordSign.setOnFocusChangeListener{_, focused->
+            if(!focused){
+                binding.passwordSignLayout.helperText = valid_password()
+            }
+        }
+
+        binding.confirmPassword.setOnFocusChangeListener{_, focused->
+            if(!focused){
+                binding.confirmPasswordLayout.helperText = valid_confirm_password()
+            }
+        }
+
+    }
+
+    private fun valid_password() : String? {
+
+        val passwordtext = binding.passwordSign.text.toString()
+
+        return when {
+            passwordtext.length < 6 -> "* * Minimum character 8!"
+            else -> null
+        }
+
+    }
+
+    private fun valid_confirm_password() : String? {
+
+        val confirmpasswordtext = binding.confirmPassword.text.toString()
+
+        if (confirmpasswordtext != binding.passwordSign.text.toString()){
+            return "* Password is valid!"
+        }
+        return null
+    }
+    private fun valid_email() : String? {
+
+        val emailText = binding.emailaddressSign.text.toString()
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
+            return "* Invalid Email!"
+        }
+        return null
     }
 
 }

@@ -1,5 +1,5 @@
 object Versions {
-    const val androidApp = "8.2.0"
+    const val androidApp = "8.2.2"
     const val jetbrains = "1.9.10"
     const val core = "1.12.0"
     const val appcompat = "1.6.1"
@@ -10,6 +10,8 @@ object Versions {
     const val hilt = "2.46"
     const val hilt_compiler = "2.46"
     const val safeArgs = "2.7.3"
+    const val firebase_bom = "32.8.0"
+    const val google_services = "4.4.1"
 }
 
 object Libs {
@@ -31,6 +33,12 @@ object Libs {
         const val nav_ui = "androidx.navigation:navigation-ui-ktx:${Versions.nav_ui}"
     }
 
+    object Firebase {
+        const val firebase_auth = "com.google.firebase:firebase-auth"
+        const val firebase_store = "com.google.firebase:firebase-firestore"
+        const val firebase_bom = "com.google.firebase:firebase-bom:${Versions.firebase_bom}"
+        const val firebase_analytics = "com.google.firebase:firebase-analytics"
+    }
 }
 
 object Plugins {
@@ -40,6 +48,7 @@ object Plugins {
     const val hilt = "com.google.dagger.hilt.android"
     const val kotlinKapt = "kotlin-kapt"
     const val safeArgs = "androidx.navigation.safeargs"
+    const val google_services = "com.google.gms.google-services"
 }
 
 

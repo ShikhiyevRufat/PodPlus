@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:labelVisibilityMode="unlabeled"
+        app:itemIconTint="@color/purple"
         android:background="@drawable/bottom_nav_design"
         app:menu="@menu/bottom_nav"
         app:layout_constraintBottom_toBottomOf="parent"

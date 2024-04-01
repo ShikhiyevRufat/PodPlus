@@ -25,9 +25,9 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater)
-        requireActivity().onBackPressedDispatcher.addCallback(this){
-            handleOnBackPressed()
-        }
+//        requireActivity().onBackPressedDispatcher.addCallback(this){
+//            handleOnBackPressed()
+//        }
         return binding.root
     }
 

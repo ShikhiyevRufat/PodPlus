@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "739130374850",
+    "project_id": "podplus-84677",
+    "storage_bucket": "podplus-84677.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:739130374850:android:2082a5eba4c513113ad95b",
+        "android_client_info": {
+          "package_name": "com.example.podplus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQfVIwqC7rBXJfxAQx4gaLkl83BBx9DFI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

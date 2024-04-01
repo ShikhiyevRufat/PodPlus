@@ -3,12 +3,13 @@ buildscript {
         google()
         mavenCentral()
     }
-    dependencies {
-        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.7.7")
-    }
+
 }
 plugins {
     id(Plugins.androidApp) version Versions.androidApp apply false
+    id(Plugins.android) version Versions.androidApp apply false
     id(Plugins.jetbrains) version Versions.jetbrains apply false
     id(Plugins.hilt) version Versions.hilt apply false
+    id(Plugins.google_services) version Versions.google_services apply false
+    id(Plugins.safeArgs) version Versions.safeArgs apply false
 }

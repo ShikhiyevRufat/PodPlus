@@ -35,14 +35,21 @@
         android:textColorHint="@color/secondtextColor"
         android:inputType="textEmailAddress"/>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailaddress_sign_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:hintEnabled="false"
+        app:helperText=""
+        app:helperTextTextColor="@color/red"
+        app:layout_constraintTop_toBottomOf="@id/username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
     <EditText
         android:id="@+id/emailaddress_sign"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        app:layout_constraintTop_toBottomOf="@id/username"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="30dp"
         android:layout_marginHorizontal="30dp"
         android:paddingLeft="20dp"
         android:drawableStart="@drawable/emailicon"
@@ -52,6 +59,7 @@
         android:textSize="14dp"
         android:textColorHint="@color/secondtextColor"
         android:inputType="textEmailAddress"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password_sign_layout"
@@ -59,7 +67,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         app:hintEnabled="false"
-        app:layout_constraintTop_toBottomOf="@id/emailaddress_sign"
+        app:helperText=""
+        app:helperTextTextColor="@color/red"
+        app:layout_constraintTop_toBottomOf="@id/emailaddress_sign_layout"
         app:passwordToggleEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -68,9 +78,6 @@
         android:id="@+id/password_sign"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        app:layout_constraintTop_toBottomOf="@id/emailaddress_sign"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginHorizontal="30dp"
         android:paddingLeft="20dp"
         android:drawableStart="@drawable/passwordicon"
@@ -85,14 +92,22 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/confirm_password_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:hintEnabled="false"
+        app:helperText=""
+        app:helperTextTextColor="@color/red"
+        app:layout_constraintTop_toBottomOf="@id/password_sign_layout"
+        app:passwordToggleEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
     <EditText
         android:id="@+id/confirm_password"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        app:layout_constraintTop_toBottomOf="@id/password_sign_layout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="30dp"
         android:layout_marginHorizontal="30dp"
         android:paddingLeft="20dp"
         android:drawableStart="@drawable/passwordicon"
@@ -102,6 +117,7 @@
         android:textSize="14dp"
         android:textColorHint="@color/secondtextColor"
         android:inputType="textEmailAddress"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signup"
@@ -119,7 +135,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/confirm_password"/>
+        app:layout_constraintTop_toBottomOf="@id/confirm_password_layout"/>
 
     <TextView
         android:id="@+id/or"
