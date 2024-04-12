@@ -10,25 +10,22 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.onboarding.databinding.FragmentSignUpPageBinding
 import com.google.firebase.Firebase
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import dagger.hilt.android.AndroidEntryPoint
-
 @AndroidEntryPoint
 class SignUpPageFragment : Fragment() {
 
     private lateinit var binding: FragmentSignUpPageBinding
-    private val firestore = Firebase.firestore
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
+    private val firestore = FirebaseFirestore.getInstance()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentSignUpPageBinding.inflate(layoutInflater)
+        binding = FragmentSignUpPageBinding.inflate(inflater)
 
         binding.login.setOnClickListener {
             val action = SignUpPageFragmentDirections.actionSignUpPageFragmentToLoginPageFragment()
@@ -45,13 +42,13 @@ class SignUpPageFragment : Fragment() {
     }
 
 
-    private fun register(){
+    fun register(){
         val email = binding.emailaddressSign.text.toString()
         val password = binding.passwordSign.text.toString()
 
         val firebaseAuth = Firebase.auth
         firebaseAuth.createUserWithEmailAndPassword(email, password)
-            .addOnSuccessListener { authResult ->
+            .addOnSuccessListener {authResult ->
                 val user = authResult.user
                 addExtraUserInfo(user!!.uid)
                 openpage()
@@ -107,8 +104,8 @@ class SignUpPageFragment : Fragment() {
         val passwordtext = binding.passwordSign.text.toString()
 
         return when {
-            passwordtext.length < 6 -> "* * Minimum character 8!"
-            else -> null
+            passwordtext.length < 8 -> "* * Minimum character 8!"
+            else -> ""
         }
 
     }
@@ -120,7 +117,7 @@ class SignUpPageFragment : Fragment() {
         if (confirmpasswordtext != binding.passwordSign.text.toString()){
             return "* Password is valid!"
         }
-        return null
+        return ""
     }
     private fun valid_email() : String? {
 
@@ -129,7 +126,7 @@ class SignUpPageFragment : Fragment() {
         if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
             return "* Invalid Email!"
         }
-        return null
+        return ""
     }
 
 }

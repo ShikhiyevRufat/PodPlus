@@ -9,7 +9,13 @@
         android:id="@+id/homeFragment"
         android:name="com.example.pages.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+
+
+        <action
+            android:id="@+id/action_homeFragment_to_podcast_List_Fragment4"
+            app:destination="@id/podcast_List_Fragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/reelsPageFragment"
@@ -22,4 +28,10 @@
         android:name="com.example.pages.UserProfileFragment"
         android:label="fragment_user_profile"
         tools:layout="@layout/fragment_user_profile" />
+
+    <fragment
+        android:id="@+id/podcast_List_Fragment"
+        android:name="com.example.pages.PodcastListFragment"
+        android:label="fragment_podcast__list_"
+        tools:layout="@layout/fragment_podcast__list_" />
 </navigation>

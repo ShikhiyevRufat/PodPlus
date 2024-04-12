@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AppInsightsSettings">
-    <option name="selectedTabId" value="Firebase Crashlytics" />
+    <option name="selectedTabId" value="Android Vitals" />
     <option name="tabSettings">
       <map>
         <entry key="Firebase Crashlytics">
@@ -10,9 +10,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.example.podplus" />
-                  <option name="mobileSdkAppId" value="1:739130374850:android:2082a5eba4c513113ad95b" />
-                  <option name="projectId" value="podplus-84677" />
-                  <option name="projectNumber" value="739130374850" />
+                  <option name="mobileSdkAppId" value="1:721298036602:android:cd0a07d8c5f228940de8c3" />
+                  <option name="projectId" value="podplus-app" />
+                  <option name="projectNumber" value="721298036602" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

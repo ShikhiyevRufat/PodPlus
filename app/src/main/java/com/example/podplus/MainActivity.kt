@@ -6,7 +6,6 @@ import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupWithNavController
 import com.example.podplus.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,14 +23,13 @@ class MainActivity : AppCompatActivity() {
 
 
         navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == com.example.onboarding.R.id.loginPageFragment ||
-                destination.id == com.example.onboarding.R.id.signUpPageFragment ||
-                destination.id == com.example.splashscreen.R.id.splashFragment ||
-                destination.id == com.example.onboarding.R.id.signUpFragment){
-                binding.bottomNav.visibility = View.GONE
+            if (destination.id == com.example.pages.R.id.homeFragment ||
+                destination.id == com.example.pages.R.id.reelsPageFragment ||
+                destination.id == com.example.pages.R.id.userProfileFragment){
+                binding.bottomNav.visibility = View.VISIBLE
             }
             else{
-                binding.bottomNav.visibility = View.VISIBLE
+                binding.bottomNav.visibility = View.GONE
             }
 
             }

@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_loginPageFragment_to_signUpPageFragment"
             app:destination="@id/signUpPageFragment" />
+        <action
+            android:id="@+id/action_loginPageFragment_to_nav_pages"
+            app:destination="@id/nav_pages" />
     </fragment>
 
     <fragment

@@ -12,6 +12,7 @@ object Versions {
     const val safeArgs = "2.7.3"
     const val firebase_bom = "32.8.0"
     const val google_services = "4.4.1"
+    const val glide = "4.16.0"
 }
 
 object Libs {
@@ -38,6 +39,11 @@ object Libs {
         const val firebase_store = "com.google.firebase:firebase-firestore"
         const val firebase_bom = "com.google.firebase:firebase-bom:${Versions.firebase_bom}"
         const val firebase_analytics = "com.google.firebase:firebase-analytics"
+    }
+
+    object GetImage {
+        const val bumpTechGlide = "com.github.bumptech.glide:glide:${Versions.glide}"
+        const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
     }
 }
 

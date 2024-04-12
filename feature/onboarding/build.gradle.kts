@@ -43,6 +43,7 @@ android {
 
 dependencies {
     implementation(project(":feature:pages"))
+    implementation(project(":data"))
 
     implementation(Libs.Firebase.firebase_analytics)
     implementation(Libs.Firebase.firebase_store)

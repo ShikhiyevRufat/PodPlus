@@ -4,6 +4,7 @@ plugins {
     id(Plugins.hilt)
     id(Plugins.kotlinKapt)
     id(Plugins.safeArgs)
+    id(Plugins.google_services)
 }
 
 android {
@@ -45,12 +46,12 @@ android {
 dependencies {
     implementation(project(":feature:splashscreen"))
     implementation(project(":feature:pages"))
+    implementation(project(":feature:onboarding"))
 
+    implementation(Libs.Firebase.firebase_store)
     implementation(Libs.Hilt.hilt)
     kapt(Libs.Hilt.hilt_compiler)
-    implementation(Libs.Ui.core)
     implementation(Libs.Ui.appcompat)
-    implementation(Libs.Ui.material)
     implementation(Libs.Ui.constrainLayout)
     implementation(Libs.Nav.nav_fragment)
     implementation(Libs.Nav.nav_ui)

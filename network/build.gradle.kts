@@ -1,6 +1,10 @@
 plugins {
     id(Plugins.android)
     id(Plugins.jetbrains)
+    id(Plugins.hilt)
+    id(Plugins.kotlinKapt)
+    id(Plugins.safeArgs)
+    id(Plugins.google_services)
 }
 
 android {
@@ -33,7 +37,12 @@ android {
 }
 
 dependencies {
-
+    implementation(Libs.Firebase.firebase_analytics)
+    implementation(Libs.Firebase.firebase_store)
+    implementation(Libs.Firebase.firebase_auth)
+    implementation(platform(Libs.Firebase.firebase_bom))
+    implementation(Libs.Hilt.hilt)
+    kapt(Libs.Hilt.hilt_compiler)
     implementation(Libs.Ui.core)
     implementation(Libs.Ui.appcompat)
     implementation(Libs.Ui.material)
