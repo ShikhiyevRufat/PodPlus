@@ -43,6 +43,9 @@ android {
 dependencies {
     implementation(project(":entities"))
 
+    implementation(Libs.Player.media3_exoplayer)
+    implementation(Libs.Player.media3_exoplayer_dash)
+    implementation(Libs.Player.media3_ui)
     implementation(Libs.GetImage.bumpTechGlide)
     annotationProcessor(Libs.GetImage.glideCompiler)
     implementation(Libs.Firebase.firebase_analytics)

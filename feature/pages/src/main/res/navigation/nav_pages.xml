@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_homeFragment_to_podcast_List_Fragment4"
             app:destination="@id/podcast_List_Fragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_podcastPlayerFragment"
+            app:destination="@id/podcastPlayerFragment" />
     </fragment>
 
     <fragment
@@ -33,5 +36,14 @@
         android:id="@+id/podcast_List_Fragment"
         android:name="com.example.pages.PodcastListFragment"
         android:label="fragment_podcast__list_"
-        tools:layout="@layout/fragment_podcast__list_" />
+        tools:layout="@layout/fragment_podcast__list_" >
+        <action
+            android:id="@+id/action_podcast_List_Fragment_to_podcastPlayerFragment"
+            app:destination="@id/podcastPlayerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/podcastPlayerFragment"
+        android:name="com.example.pages.PodcastPlayerFragment"
+        android:label="fragment_podcast_player"
+        tools:layout="@layout/fragment_podcast_player" />
 </navigation>

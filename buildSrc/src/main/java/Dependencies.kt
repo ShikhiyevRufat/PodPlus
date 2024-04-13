@@ -13,6 +13,7 @@ object Versions {
     const val firebase_bom = "32.8.0"
     const val google_services = "4.4.1"
     const val glide = "4.16.0"
+    const val player = "1.3.1"
 }
 
 object Libs {
@@ -45,7 +46,14 @@ object Libs {
         const val bumpTechGlide = "com.github.bumptech.glide:glide:${Versions.glide}"
         const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
     }
+
+    object Player {
+        const val media3_exoplayer = "androidx.media3:media3-exoplayer:${Versions.player}"
+        const val media3_exoplayer_dash = "androidx.media3:media3-exoplayer-dash:${Versions.player}"
+        const val media3_ui = "androidx.media3:media3-ui:${Versions.player}"
+    }
 }
+
 
 object Plugins {
     const val androidApp = "com.android.application"
