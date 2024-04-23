@@ -34,7 +34,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signup"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:background="@drawable/btn_design"
         android:fontFamily="@font/noto_sans"
         android:layout_marginHorizontal="30dp"

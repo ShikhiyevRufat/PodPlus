@@ -39,6 +39,15 @@ class LoginPageFragment : Fragment() {
             register()
         }
 
+        binding.resetPassword.setOnClickListener {
+            val action = LoginPageFragmentDirections.actionLoginPageFragmentToForgetPasswordFragment()
+            findNavController().navigate(action)
+        }
+
+        binding.switchRemember.setOnClickListener {
+            Toast.makeText(context,"Password saved!", Toast.LENGTH_SHORT).show()
+        }
+
         return binding.root
     }
 
@@ -64,6 +73,8 @@ class LoginPageFragment : Fragment() {
                 }
             }
     }
+
+
 
     
 

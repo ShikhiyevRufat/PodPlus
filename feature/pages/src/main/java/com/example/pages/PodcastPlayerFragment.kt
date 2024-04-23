@@ -34,7 +34,10 @@ class PodcastPlayerFragment : Fragment() {
                 .apply(RequestOptions().transform(RoundedCorners(32)))
                 .into(binding.podIm)
             exoPlayer = MyExoplayer.getInstance()!!
-            binding.playeraudio.player = exoPlayer
+//            binding.playeraudio.player = exoPlayer
+            binding.playPodcast.setOnClickListener {
+                exoPlayer
+            }
         }
 
 

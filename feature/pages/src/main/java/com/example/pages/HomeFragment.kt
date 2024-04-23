@@ -5,15 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.entities.Categories
 import com.example.entities.Podcasts
+import com.example.entities.Users
 import com.example.pages.adapter.CategoryAdapter
 import com.example.pages.adapter.CategoryAdapter2
 import com.example.pages.adapter.PodcastsAdapter
 import com.example.pages.databinding.FragmentHomeBinding
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,6 +30,8 @@ class HomeFragment : Fragment() {
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var categoryAdapter2: CategoryAdapter2
     private lateinit var podcastsAdapter: PodcastsAdapter
+    private lateinit var users: Users
+    private lateinit var firestore: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +45,7 @@ class HomeFragment : Fragment() {
 //        requireActivity().onBackPressedDispatcher.addCallback(this){
 //            handleOnBackPressed()
 //        }
+        users_name()
         categories()
         categories2()
         podcasts()
@@ -84,6 +94,22 @@ class HomeFragment : Fragment() {
         binding.podcastRecycler.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         binding.podcastRecycler.adapter = podcastsAdapter
     }
+
+    private fun users_name(){
+        var firestore: FirebaseFirestore
+        firestore = FirebaseFirestore.getInstance()
+        firestore.collection("USERS")
+            .get()
+            .addOnSuccessListener {
+
+            }
+            .addOnFailureListener{
+                it.printStackTrace()
+                Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
+            }
+    }
+    }
+
 
 
 

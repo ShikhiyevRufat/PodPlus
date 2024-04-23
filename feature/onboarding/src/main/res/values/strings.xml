@@ -14,4 +14,6 @@
     <string name="sign_up_not_account_yet">Sign up!</string>
     <string name="username">Full name</string>
     <string name="cofirm_password">Cofirm password</string>
+    <string name="resset_password">Resset Password</string>
+    <string name="send">Send</string>
 </resources>

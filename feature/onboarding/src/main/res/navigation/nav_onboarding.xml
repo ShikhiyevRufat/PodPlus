@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_loginPageFragment_to_nav_pages"
             app:destination="@id/nav_pages" />
+        <action
+            android:id="@+id/action_loginPageFragment_to_forgetPasswordFragment"
+            app:destination="@id/forgetPasswordFragment" />
     </fragment>
 
     <fragment
@@ -46,4 +49,13 @@
     </fragment>
 
     <include app:graph="@navigation/nav_pages"/>
+    <fragment
+        android:id="@+id/forgetPasswordFragment"
+        android:name="com.example.onboarding.ForgetPasswordFragment"
+        android:label="fragment_forget_password"
+        tools:layout="@layout/fragment_forget_password" >
+        <action
+            android:id="@+id/action_forgetPasswordFragment_to_loginPageFragment"
+            app:destination="@id/loginPageFragment" />
+    </fragment>
 </navigation>
