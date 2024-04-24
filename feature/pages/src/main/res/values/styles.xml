@@ -5,9 +5,9 @@
         <item name="cornerSize">50%</item>
     </style>
 
-    <style name="categoryImageView" parent="">
-        <item name="cornerSize">30dp</item>
-        <item name="cornerRadius">30dp</item>
+    <style name="categoryImageView">
+        <item name="cornerSize">50%</item>
+        <item name="cornerFamily">rounded</item>
     </style>
 
 </resources>

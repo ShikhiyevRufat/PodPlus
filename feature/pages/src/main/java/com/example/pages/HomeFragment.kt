@@ -31,7 +31,9 @@ class HomeFragment : Fragment() {
     private lateinit var categoryAdapter2: CategoryAdapter2
     private lateinit var podcastsAdapter: PodcastsAdapter
     private lateinit var users: Users
-    private lateinit var firestore: FirebaseFirestore
+    private lateinit var firebaseAuth: FirebaseAuth
+    private val db = Firebase.firestore
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +47,7 @@ class HomeFragment : Fragment() {
 //        requireActivity().onBackPressedDispatcher.addCallback(this){
 //            handleOnBackPressed()
 //        }
-        users_name()
+        usersName()
         categories()
         categories2()
         podcasts()
@@ -95,23 +97,20 @@ class HomeFragment : Fragment() {
         binding.podcastRecycler.adapter = podcastsAdapter
     }
 
-    private fun users_name(){
-        var firestore: FirebaseFirestore
-        firestore = FirebaseFirestore.getInstance()
-        firestore.collection("USERS")
-            .get()
+    private fun usersName(){
+        firebaseAuth = FirebaseAuth.getInstance()
+        val uid = firebaseAuth.currentUser?.uid
+        val userName = db.collection("Users").document(uid!!)
+            userName.get()
             .addOnSuccessListener {
-
+                if (it != null){
+                    val uname = it.data!!["name"].toString()
+                    binding.usernameHome.text = uname
+                }
             }
-            .addOnFailureListener{
-                it.printStackTrace()
-                Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
+            .addOnFailureListener {
+
             }
     }
     }
 
-
-
-
-
-}

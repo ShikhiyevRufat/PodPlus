@@ -47,7 +47,7 @@ class SignUpPageFragment : Fragment() {
             val username = binding.username.text.toString()
             val email = binding.emailaddressSign.text.toString()
             val password = binding.passwordSign.text.toString()
-            register(email,password,username)
+            register(username,email,password)
         }
 
 
@@ -56,12 +56,12 @@ class SignUpPageFragment : Fragment() {
     }
 
 
-    fun register(email: String,password: String, username: String){
+    fun register(username: String,email: String, password: String){
         val firebaseAuth = Firebase.auth
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnSuccessListener {authResult ->
                 val user = authResult.user
-                addExtraUserInfo(firebaseAuth.currentUser?.uid ?: "", email, username)
+                addExtraUserInfo(firebaseAuth.currentUser?.uid ?: "", username, email)
                 openpage()
             }.addOnFailureListener { exception ->
                 (exception as? FirebaseAuthException)?.errorCode?.let { errorCode ->
@@ -78,7 +78,7 @@ class SignUpPageFragment : Fragment() {
     private fun addExtraUserInfo(userId: String, usernames: String, emails:String) {
         val userData = Users(userId,usernames,emails)
 
-        val userDocument = firestore.collection("USERS").document(userId)
+        val userDocument = firestore.collection("Users").document(userId)
         userDocument.set(userData)
             .addOnSuccessListener {
                 // User data saved successfully

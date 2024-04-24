@@ -12,4 +12,10 @@
     <string name="podcasts">Podcasts</string>
     <string name="podcast_detail">Podcast Detail</string>
     <string name="hq">HQ</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="log_out">Log out</string>
+    <string name="my_playlists">My playlists</string>
+    <string name="recently_added">Recently added</string>
+    <string name="nothing_here">Nothing here!</string>
+    <string name="be_a_creator">Be a creator</string>
 </resources>

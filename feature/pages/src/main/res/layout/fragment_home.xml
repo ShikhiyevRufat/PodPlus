@@ -33,11 +33,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                style="@style/circleImageView"
+                app:shapeAppearanceOverlay="@style/circleImageView"
                 android:src="@drawable/user_picture"/>
 
                 <LinearLayout
