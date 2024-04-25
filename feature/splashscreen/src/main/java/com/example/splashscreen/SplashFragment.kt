@@ -8,10 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.splashscreen.databinding.FragmentSplashBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class SplashFragment : Fragment() {
 
     private lateinit var binding: FragmentSplashBinding
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +30,7 @@ class SplashFragment : Fragment() {
     }
 
     private fun playLottie(){
+        auth = FirebaseAuth.getInstance()
         binding.imageViewSplash.repeatCount = 0
         binding.imageViewSplash.playAnimation()
         binding.imageViewSplash.addAnimatorListener(object : Animator.AnimatorListener {
@@ -35,8 +38,15 @@ class SplashFragment : Fragment() {
             }
 
             override fun onAnimationEnd(p0: Animator) {
-                val action = SplashFragmentDirections.splashToOnboarding()
-                findNavController().navigate(action)
+                if (auth.currentUser == null) {
+                    val action = SplashFragmentDirections.splashToOnboarding()
+                    findNavController().navigate(action)
+
+                } else {
+                    val action = SplashFragmentDirections.actionSplashFragmentToNavPages()
+                    findNavController().navigate(action)
+
+                }
             }
 
             override fun onAnimationCancel(p0: Animator) {

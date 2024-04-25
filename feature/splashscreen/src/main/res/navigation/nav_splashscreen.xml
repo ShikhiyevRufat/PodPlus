@@ -14,9 +14,15 @@
         <action
             android:id="@+id/splashToOnboarding"
             app:destination="@id/nav_onboarding"/>
+        <action
+            android:id="@+id/action_splashFragment_to_nav_pages"
+            app:destination="@id/nav_pages" />
+
 
     </fragment>
 
     <include app:graph="@navigation/nav_onboarding"/>
+
+    <include app:graph="@navigation/nav_pages"/>
 
 </navigation>

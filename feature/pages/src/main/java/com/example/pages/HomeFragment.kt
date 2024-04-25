@@ -1,5 +1,6 @@
 package com.example.pages
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -96,12 +97,12 @@ class HomeFragment : Fragment() {
         binding.podcastRecycler.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         binding.podcastRecycler.adapter = podcastsAdapter
     }
-
+    
     private fun usersName(){
         firebaseAuth = FirebaseAuth.getInstance()
         val uid = firebaseAuth.currentUser?.uid
         val userName = db.collection("Users").document(uid!!)
-            userName.get()
+        userName.get()
             .addOnSuccessListener {
                 if (it != null){
                     val uname = it.data!!["name"].toString()
@@ -112,5 +113,6 @@ class HomeFragment : Fragment() {
 
             }
     }
-    }
+
+}
 

@@ -30,8 +30,8 @@
         android:id="@+id/userProfileFragment"
         android:name="com.example.pages.UserProfileFragment"
         android:label="fragment_user_profile"
-        tools:layout="@layout/fragment_user_profile" />
-
+        tools:layout="@layout/fragment_user_profile">
+    </fragment>
     <fragment
         android:id="@+id/podcast_List_Fragment"
         android:name="com.example.pages.PodcastListFragment"
@@ -46,4 +46,5 @@
         android:name="com.example.pages.PodcastPlayerFragment"
         android:label="fragment_podcast_player"
         tools:layout="@layout/fragment_podcast_player" />
+
 </navigation>

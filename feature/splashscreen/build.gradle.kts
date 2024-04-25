@@ -44,7 +44,9 @@ dependencies {
 
     implementation ("com.airbnb.android:lottie:6.3.0")
     implementation(project(":feature:onboarding"))
+    implementation(project(":feature:pages"))
 
+    implementation(Libs.Firebase.firebase_auth)
     implementation(Libs.Hilt.hilt)
     kapt(Libs.Hilt.hilt_compiler)
     implementation(Libs.Ui.core)
