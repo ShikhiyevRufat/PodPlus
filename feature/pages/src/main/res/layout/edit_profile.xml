@@ -25,7 +25,7 @@
             android:layout_height="80dp"
             android:layout_gravity="center"
             app:shapeAppearanceOverlay="@style/circleImageView"
-            android:src="@drawable/user_picture"/>
+            android:src="@drawable/upload_image"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -36,7 +36,7 @@
                 android:text="@string/upload_image"/>
 
             <EditText
-                android:id="@+id/username"
+                android:id="@+id/username_edt"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="40dp"

@@ -48,6 +48,7 @@ dependencies {
     implementation(Libs.Player.media3_ui)
     implementation(Libs.GetImage.bumpTechGlide)
     annotationProcessor(Libs.GetImage.glideCompiler)
+    implementation(Libs.Firebase.firebase_storage)
     implementation(Libs.Firebase.firebase_analytics)
     implementation(Libs.Firebase.firebase_store)
     implementation(Libs.Firebase.firebase_auth)

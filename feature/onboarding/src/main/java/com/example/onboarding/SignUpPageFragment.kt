@@ -11,15 +11,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.entities.Users
 import com.example.onboarding.databinding.FragmentSignUpPageBinding
 import com.google.firebase.Firebase
-import com.google.firebase.FirebaseApp
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.auth.User
-import com.google.firebase.firestore.firestore
 import dagger.hilt.android.AndroidEntryPoint
-import java.nio.file.attribute.UserPrincipalLookupService
 
 @AndroidEntryPoint
 class SignUpPageFragment : Fragment() {
@@ -47,7 +42,8 @@ class SignUpPageFragment : Fragment() {
             val username = binding.username.text.toString()
             val email = binding.emailaddressSign.text.toString()
             val password = binding.passwordSign.text.toString()
-            register(username,email,password)
+            val image = null
+            image?.let { it1 -> register(username,email,password, it1) }
         }
 
 
@@ -56,12 +52,12 @@ class SignUpPageFragment : Fragment() {
     }
 
 
-    fun register(username: String,email: String, password: String){
+    fun register(username: String,email: String, password: String, image: String){
         val firebaseAuth = Firebase.auth
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnSuccessListener {authResult ->
                 val user = authResult.user
-                addExtraUserInfo(firebaseAuth.currentUser?.uid ?: "", username, email)
+                addExtraUserInfo(firebaseAuth.currentUser?.uid ?: "", username, email,image)
                 openpage()
             }.addOnFailureListener { exception ->
                 (exception as? FirebaseAuthException)?.errorCode?.let { errorCode ->
@@ -75,8 +71,8 @@ class SignUpPageFragment : Fragment() {
         findNavController().navigate(action)
     }
 
-    private fun addExtraUserInfo(userId: String, usernames: String, emails:String) {
-        val userData = Users(userId,usernames,emails)
+    private fun addExtraUserInfo(userId: String, usernames: String, emails:String, image:String) {
+        val userData = Users(userId,usernames,emails,image)
 
         val userDocument = firestore.collection("Users").document(userId)
         userDocument.set(userData)

@@ -1,9 +1,10 @@
 package com.example.entities
 
-data class Users (
+data class Users(
     var userId: String,
     var name: String,
     var email: String,
+    var image: String? = null
 ){
-    constructor() : this("","","")
+    constructor() : this("","","","")
 }

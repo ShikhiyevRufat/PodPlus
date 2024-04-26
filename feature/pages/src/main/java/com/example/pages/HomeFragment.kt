@@ -2,6 +2,7 @@ package com.example.pages
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.entities.Categories
 import com.example.entities.Podcasts
 import com.example.entities.Users
@@ -52,6 +55,7 @@ class HomeFragment : Fragment() {
         categories()
         categories2()
         podcasts()
+        getUserProfilePicture()
 
         return binding.root
     }
@@ -113,6 +117,35 @@ class HomeFragment : Fragment() {
 
             }
     }
+    private fun getUserProfilePicture() {
+        val uid = firebaseAuth.currentUser?.uid
+        if (uid != null) {
+            db.collection("Users").document(uid).get()
+                .addOnSuccessListener { documentSnapshot ->
+                    if (documentSnapshot != null && documentSnapshot.exists()) {
+                        val imageUrl = documentSnapshot.getString("image")
+                        if (imageUrl != null) {
+                            // Load the image using Glide with caching disabled
+                            Glide.with(requireContext())
+                                .load(imageUrl)
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .skipMemoryCache(true)
+                                .placeholder(R.drawable.user_picture) // Optional placeholder image
+                                .error(R.drawable.user_picture) // Optional error image
+                                .into(binding.ppImg3);
+                        } else {
+                            Log.d("UserProfileFragment", "No image URL found in user profile")
+                        }
+                    } else {
+                        Log.d("UserProfileFragment", "User document not found")
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.w("UserProfileFragment", "Error getting user profile picture:", exception)
+                }
+        }
+    }
+
 
 }
 

@@ -40,6 +40,7 @@ object Libs {
         const val firebase_store = "com.google.firebase:firebase-firestore"
         const val firebase_bom = "com.google.firebase:firebase-bom:${Versions.firebase_bom}"
         const val firebase_analytics = "com.google.firebase:firebase-analytics"
+        const val firebase_storage = "com.google.firebase:firebase-storage"
     }
 
     object GetImage {

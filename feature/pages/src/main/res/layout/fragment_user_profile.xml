@@ -52,6 +52,7 @@
             android:id="@+id/pp_img"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:scaleType="fitXY"
             app:shapeAppearanceOverlay="@style/circleImageView"
             android:src="@drawable/user_picture"/>
             
