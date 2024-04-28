@@ -53,6 +53,10 @@
         android:id="@+id/sharePageFragment"
         android:name="com.example.pages.SharePageFragment"
         android:label="fragment_share_page"
-        tools:layout="@layout/fragment_share_page" />
+        tools:layout="@layout/fragment_share_page" >
+        <action
+            android:id="@+id/action_sharePageFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
+    </fragment>
 
 </navigation>

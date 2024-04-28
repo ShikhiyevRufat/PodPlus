@@ -6,7 +6,7 @@
     </style>
 
     <style name="categoryImageView">
-        <item name="cornerSize">50%</item>
+        <item name="cornerSize">20%</item>
         <item name="cornerFamily">rounded</item>
     </style>
 
