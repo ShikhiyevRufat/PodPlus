@@ -15,8 +15,14 @@ import com.example.pages.databinding.PodcastListDesignBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.toObject
 
-class PodcastListAdapter(private val audioList: List<String>):
+class PodcastListAdapter(private var audioList: List<String>):
     RecyclerView.Adapter<PodcastListAdapter.MyViewHolder>(){
+
+//    fun updateList(newList: List<Podcasts>) {
+//        audioList = newList
+//        notifyDataSetChanged()
+//    }
+
 
         class MyViewHolder(private val binding: PodcastListDesignBinding): RecyclerView.ViewHolder(binding.root){
             fun bindData(audioId: String){

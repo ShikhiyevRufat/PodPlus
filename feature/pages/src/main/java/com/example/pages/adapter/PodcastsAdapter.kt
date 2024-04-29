@@ -9,7 +9,12 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.entities.Podcasts
 import com.example.pages.databinding.PodcastListDesignBinding
 
-class PodcastsAdapter(private val podcastList: List<Podcasts>): RecyclerView.Adapter<PodcastsAdapter.MyViewHolder>() {
+class PodcastsAdapter(private var podcastList: List<Podcasts>): RecyclerView.Adapter<PodcastsAdapter.MyViewHolder>() {
+
+    fun setData(newPodcasts: List<Podcasts>) {
+        podcastList = newPodcasts
+        notifyDataSetChanged()
+    }
 
     class MyViewHolder(private val binding: PodcastListDesignBinding) :
         RecyclerView.ViewHolder(binding.root){

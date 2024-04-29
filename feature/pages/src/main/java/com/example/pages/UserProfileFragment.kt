@@ -3,6 +3,8 @@ package com.example.pages
 import android.app.AlertDialog
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,6 +18,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.AppCompatButton
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.pages.adapter.MyPlayListAdapter
@@ -36,6 +39,7 @@ class UserProfileFragment : Fragment() {
     private val db = Firebase.firestore
     private lateinit var pickMediaLauncher: ActivityResultLauncher<PickVisualMediaRequest>
     private var storage = Firebase.storage
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,16 +62,24 @@ class UserProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentUserProfileBinding.inflate(layoutInflater)
+
+        // Setup swipe refresh listener
+        swipeRefreshLayout = binding.swipeRefresh
+        swipeRefreshLayout?.setOnRefreshListener {
+            fetchData()
+            swipeRefreshLayout?.isRefreshing = false
+        }
+
+        return binding.root
+    }
+
+    private fun fetchData() {
         usersName()
         logOut()
         editProfile()
         getUserProfilePicture()
         share()
-
-
-        return binding.root
     }
-
     private fun isEmpty(){
         val data = listOf("")
         if (data.isEmpty()) {

@@ -53,6 +53,10 @@ object Libs {
         const val media3_exoplayer_dash = "androidx.media3:media3-exoplayer-dash:${Versions.player}"
         const val media3_ui = "androidx.media3:media3-ui:${Versions.player}"
     }
+
+    object Refresh {
+        const val refresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01"
+    }
 }
 
 

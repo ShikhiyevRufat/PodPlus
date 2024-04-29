@@ -43,6 +43,7 @@ android {
 dependencies {
     implementation(project(":entities"))
 
+    implementation(Libs.Refresh.refresh)
     implementation(Libs.Player.media3_exoplayer)
     implementation(Libs.Player.media3_exoplayer_dash)
     implementation(Libs.Player.media3_ui)

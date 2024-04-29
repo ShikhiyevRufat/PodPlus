@@ -2,14 +2,19 @@ package com.example.pages
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.entities.Categories
@@ -37,6 +42,10 @@ class HomeFragment : Fragment() {
     private lateinit var users: Users
     private lateinit var firebaseAuth: FirebaseAuth
     private val db = Firebase.firestore
+    private var progressBar: ProgressBar? = null
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
+    private lateinit var searchView: SearchView
+    private lateinit var podcastsList: List<Podcasts>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,13 +60,47 @@ class HomeFragment : Fragment() {
 //        requireActivity().onBackPressedDispatcher.addCallback(this){
 //            handleOnBackPressed()
 //        }
+        progressBar = binding.progressBar
+
+        progressBar = binding.progressBar
+        swipeRefreshLayout = binding.swipeRefresh
+        searchView = binding.searchBar
+
+        // Show progress bar for 3 seconds initially
+        progressBar?.visibility = View.VISIBLE
+        val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed({
+            progressBar?.visibility = View.GONE
+            fetchData()
+        }, 3000)
+
+        // Setup swipe refresh listener
+        swipeRefreshLayout?.setOnRefreshListener {
+            fetchData()
+            swipeRefreshLayout?.isRefreshing = false
+        }
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                filterPodcasts(newText)
+                return true
+            }
+        })
+
+
+        return binding.root
+    }
+
+    private fun fetchData() {
         usersName()
         categories()
         categories2()
         podcasts()
         getUserProfilePicture()
-
-        return binding.root
     }
 
     private fun categories(){
@@ -91,14 +134,25 @@ class HomeFragment : Fragment() {
     private fun podcasts(){
         FirebaseFirestore.getInstance().collection("Podcasts")
             .get().addOnSuccessListener {
-                val podcastsList = it.toObjects(Podcasts :: class.java)
+                podcastsList = it.toObjects(Podcasts::class.java)
                 podcastsRecycleView(podcastsList)
             }
     }
 
-    private fun podcastsRecycleView(podcastsLists: List<Podcasts>){
+    private fun filterPodcasts(query: String) {
+        if (::podcastsList.isInitialized) {
+            val filteredPodcasts = podcastsList.filter { podcast ->
+                podcast.name.contains(query, ignoreCase = true) // You can change this condition based on your search criteria
+            }
+            podcastsAdapter.setData(filteredPodcasts)
+        } else {
+            Log.e("HomeFragment", "Podcasts list not initialized")
+        }
+    }
+
+    private fun podcastsRecycleView(podcastsLists: List<Podcasts>) {
         podcastsAdapter = PodcastsAdapter(podcastsLists)
-        binding.podcastRecycler.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+        binding.podcastRecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.podcastRecycler.adapter = podcastsAdapter
     }
     
@@ -145,6 +199,7 @@ class HomeFragment : Fragment() {
                 }
         }
     }
+
 
 
 }
