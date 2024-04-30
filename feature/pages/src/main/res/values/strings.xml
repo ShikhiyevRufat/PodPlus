@@ -21,4 +21,6 @@
     <string name="full_name">Full name</string>
     <string name="save">Save</string>
     <string name="upload_image">Upload Image</string>
+    <string name="add_to_ofline_sets">Add to ofline sets</string>
+    <string name="download">Download</string>
 </resources>

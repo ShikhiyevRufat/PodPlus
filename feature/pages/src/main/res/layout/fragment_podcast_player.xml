@@ -97,16 +97,87 @@
 <!--            app:layout_constraintStart_toStartOf="parent"-->
 <!--            app:layout_constraintEnd_toEndOf="parent"/>-->
 
-        <ImageButton
-            android:id="@+id/playPodcast"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@drawable/btn_design3"
-            android:src="@drawable/podcastplayer"
-            android:layout_marginTop="60dp"
+        <SeekBar
+            android:id="@+id/second_podcast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:progress="50"
             app:layout_constraintTop_toBottomOf="@id/empty_txt"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <RelativeLayout
+            android:id="@+id/relativelay3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/second_podcast"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageButton
+                android:id="@+id/next_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/bg"
+                android:src="@drawable/next_left"
+                android:layout_marginTop="60dp"
+                android:layout_alignParentStart="true"/>
+
+            <ImageButton
+                android:id="@+id/playPodcast"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="60dp"
+                android:background="@drawable/btn_design3"
+                android:src="@drawable/podcast_pause" />
+
+            <ImageButton
+                android:id="@+id/next_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/bg"
+                android:src="@drawable/next_right"
+                android:layout_marginTop="60dp"
+                android:layout_alignParentEnd="true"/>
+
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/download"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textAllCaps="false"
+            android:text="@string/download"
+            android:textColor="@color/white"
+            android:fontFamily="@font/noto_sans"
+            android:background="@drawable/btn_design4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/relativelay3"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/download"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/offline_listen"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:fontFamily="@font/noto_sans"
+                android:text="@string/add_to_ofline_sets"/>
+        </LinearLayout>
 
                 <RelativeLayout
                     android:id="@+id/relativelay2"
