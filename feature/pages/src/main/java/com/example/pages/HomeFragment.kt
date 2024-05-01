@@ -60,7 +60,6 @@ class HomeFragment : Fragment() {
 //        requireActivity().onBackPressedDispatcher.addCallback(this){
 //            handleOnBackPressed()
 //        }
-        progressBar = binding.progressBar
 
         progressBar = binding.progressBar
         swipeRefreshLayout = binding.swipeRefresh

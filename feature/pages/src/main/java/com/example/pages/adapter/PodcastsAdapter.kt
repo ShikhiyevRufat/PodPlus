@@ -2,11 +2,14 @@ package com.example.pages.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.entities.Podcasts
+import com.example.pages.ExoPlayer.MyExoplayer
+import com.example.pages.PodcastListFragmentDirections
 import com.example.pages.databinding.PodcastListDesignBinding
 
 class PodcastsAdapter(private var podcastList: List<Podcasts>): RecyclerView.Adapter<PodcastsAdapter.MyViewHolder>() {
@@ -24,6 +27,7 @@ class PodcastsAdapter(private var podcastList: List<Podcasts>): RecyclerView.Ada
                     .load(podcast.imageurl)
                     .apply(RequestOptions().transform(RoundedCorners(20)))
                     .into(binding.podcastImages)
+
             }
     }
 

@@ -2,11 +2,14 @@ package com.example.pages.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.entities.Categories
+import com.example.pages.HomeFragmentDirections
+import com.example.pages.PodcastListFragment
 import com.example.pages.databinding.CategoryItemDesignBinding
 
 class CategoryAdapter2(private val categoryList: List<Categories>): RecyclerView.Adapter<CategoryAdapter2.MyViewHolder>() {
@@ -20,6 +23,12 @@ class CategoryAdapter2(private val categoryList: List<Categories>): RecyclerView
                     .load(category.imageurl)
                     .apply(RequestOptions().transform(RoundedCorners(32)))
                     .into(binding.categoryItemImg)
+
+                binding.root.setOnClickListener {
+                    PodcastListFragment.categories = category
+                    val action = HomeFragmentDirections.actionHomeFragmentToPodcastListFragment4()
+                    it.findNavController().navigate(action)
+                }
             }
     }
 
