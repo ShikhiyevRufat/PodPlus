@@ -189,8 +189,6 @@ class HomeFragment : Fragment() {
                         } else {
                             Log.d("UserProfileFragment", "No image URL found in user profile")
                         }
-                    } else {
-                        Log.d("UserProfileFragment", "User document not found")
                     }
                 }
                 .addOnFailureListener { exception ->
