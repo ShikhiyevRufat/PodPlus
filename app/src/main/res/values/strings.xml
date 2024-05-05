@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">PodPlus</string>
+    <string name="facebook_app_id">1465998227342999</string>
+    <string name="fb_login_protocol_scheme">fb1465998227342999</string>
+    <string name="facebook_client_token">0cbdc7578dc2289aa50e26b6abf1ae1e</string>
 </resources>

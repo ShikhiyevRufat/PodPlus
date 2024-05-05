@@ -57,9 +57,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater)
-//        requireActivity().onBackPressedDispatcher.addCallback(this){
-//            handleOnBackPressed()
-//        }
+        firebaseAuth = FirebaseAuth.getInstance()
 
         progressBar = binding.progressBar
         swipeRefreshLayout = binding.swipeRefresh
@@ -89,7 +87,6 @@ class HomeFragment : Fragment() {
                 return true
             }
         })
-
 
         return binding.root
     }
@@ -154,7 +151,7 @@ class HomeFragment : Fragment() {
         binding.podcastRecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.podcastRecycler.adapter = podcastsAdapter
     }
-    
+
     private fun usersName(){
         firebaseAuth = FirebaseAuth.getInstance()
         val uid = firebaseAuth.currentUser?.uid

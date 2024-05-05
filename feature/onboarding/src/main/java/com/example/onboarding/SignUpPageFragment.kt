@@ -38,14 +38,13 @@ class SignUpPageFragment : Fragment() {
 
         helperText()
 
-        binding.signup.setOnClickListener {
+        binding.signupToHome.setOnClickListener {
             val username = binding.username.text.toString()
             val email = binding.emailaddressSign.text.toString()
             val password = binding.passwordSign.text.toString()
             val image = null
             image?.let { it1 -> register(username,email,password, it1) }
         }
-
 
 
         return binding.root

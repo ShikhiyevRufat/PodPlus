@@ -57,6 +57,15 @@ object Libs {
     object Refresh {
         const val refresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01"
     }
+
+    object Facebook {
+        const val facebook_login = "com.facebook.android:facebook-login:latest.release"
+        const val facebook_android = "com.facebook.android:facebook-android-sdk:15.1.0"
+    }
+
+    object Google {
+        const val google_auth = "com.google.android.gms:play-services-auth:21.1.1"
+    }
 }
 
 

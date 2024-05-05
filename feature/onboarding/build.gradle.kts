@@ -46,6 +46,9 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":entities"))
 
+    implementation(Libs.Google.google_auth)
+    implementation(Libs.Facebook.facebook_login)
+    implementation(Libs.Facebook.facebook_android)
     implementation(Libs.Firebase.firebase_analytics)
     implementation(Libs.Firebase.firebase_store)
     implementation(Libs.Firebase.firebase_auth)

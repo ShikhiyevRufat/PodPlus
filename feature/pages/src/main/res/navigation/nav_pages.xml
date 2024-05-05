@@ -35,6 +35,7 @@
             android:id="@+id/action_userProfileFragment_to_sharePageFragment"
             app:destination="@id/sharePageFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/podcast_List_Fragment"
         android:name="com.example.pages.PodcastListFragment"
@@ -44,11 +45,13 @@
             android:id="@+id/action_podcast_List_Fragment_to_podcastPlayerFragment"
             app:destination="@id/podcastPlayerFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/podcastPlayerFragment"
         android:name="com.example.pages.PodcastPlayerFragment"
         android:label="fragment_podcast_player"
         tools:layout="@layout/fragment_podcast_player" />
+
     <fragment
         android:id="@+id/sharePageFragment"
         android:name="com.example.pages.SharePageFragment"

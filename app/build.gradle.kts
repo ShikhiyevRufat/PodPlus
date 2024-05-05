@@ -21,13 +21,41 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        create("release"){
+            keyAlias = "key0"
+            keyPassword = "Shikhiyevrufat2004."
+            storeFile = file("../certificates/PodPlusApkKey.jks")
+            storePassword = "Shikhiyevrufat2004."
+        }
+
+        create("dev"){
+            keyAlias = "key0"
+            keyPassword = "Shikhiyevrufat2004."
+            storeFile = file("../certificates/DebugPodPlusApkKey.jks")
+            storePassword = "Shikhiyevrufat2004."
+        }
+    }
+
     buildTypes {
         release {
+            isMinifyEnabled = false
+            isDebuggable = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            signingConfig = signingConfigs.getByName("release")
+        }
+
+        debug {
+            isDebuggable = true
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("dev")
         }
     }
     compileOptions {
