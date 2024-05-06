@@ -152,21 +152,24 @@ class HomeFragment : Fragment() {
         binding.podcastRecycler.adapter = podcastsAdapter
     }
 
-    private fun usersName(){
+    private fun usersName() {
         firebaseAuth = FirebaseAuth.getInstance()
         val uid = firebaseAuth.currentUser?.uid
         val userName = db.collection("Users").document(uid!!)
         userName.get()
-            .addOnSuccessListener {
-                if (it != null){
-                    val uname = it.data!!["name"].toString()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot != null && documentSnapshot.exists()) {
+                    val uname = documentSnapshot.data?.get("name").toString()
                     binding.usernameHome.text = uname
+                } else {
+                    Log.d("HomeFragment", "User document does not exist")
                 }
             }
-            .addOnFailureListener {
-
+            .addOnFailureListener { exception ->
+                Log.e("HomeFragment", "Error getting user document", exception)
             }
     }
+
     private fun getUserProfilePicture() {
         val uid = firebaseAuth.currentUser?.uid
         if (uid != null) {

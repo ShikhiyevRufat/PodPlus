@@ -1,6 +1,7 @@
 package com.example.onboarding
 
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.entities.Users
 import com.example.onboarding.databinding.FragmentSignUpPageBinding
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -21,9 +23,15 @@ class SignUpPageFragment : Fragment() {
 
     private lateinit var binding: FragmentSignUpPageBinding
     private val firestore = FirebaseFirestore.getInstance()
+    private lateinit var auth: FirebaseAuth
 
     companion object {
         private lateinit var users: Users
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        auth = Firebase.auth
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,8 +50,9 @@ class SignUpPageFragment : Fragment() {
             val username = binding.username.text.toString()
             val email = binding.emailaddressSign.text.toString()
             val password = binding.passwordSign.text.toString()
-            val image = null
-            image?.let { it1 -> register(username,email,password, it1) }
+            register(username,email,password)
+//            image?.let { it1 -> register (username,email,password) }
+            Log.d("Register","button")
         }
 
 
@@ -51,12 +60,12 @@ class SignUpPageFragment : Fragment() {
     }
 
 
-    fun register(username: String,email: String, password: String, image: String){
-        val firebaseAuth = Firebase.auth
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
+    private fun register(username: String, email: String, password: String){
+        Log.d("Register","register")
+        auth.createUserWithEmailAndPassword(email, password)
             .addOnSuccessListener {authResult ->
                 val user = authResult.user
-                addExtraUserInfo(firebaseAuth.currentUser?.uid ?: "", username, email,image)
+                addExtraUserInfo(auth.currentUser?.uid ?: "", username, email)
                 openpage()
             }.addOnFailureListener { exception ->
                 (exception as? FirebaseAuthException)?.errorCode?.let { errorCode ->
@@ -70,8 +79,8 @@ class SignUpPageFragment : Fragment() {
         findNavController().navigate(action)
     }
 
-    private fun addExtraUserInfo(userId: String, usernames: String, emails:String, image:String) {
-        val userData = Users(userId,usernames,emails,image)
+    private fun addExtraUserInfo(userId: String, usernames: String, emails:String) {
+        val userData = Users(userId,usernames,emails,image = null)
 
         val userDocument = firestore.collection("Users").document(userId)
         userDocument.set(userData)
